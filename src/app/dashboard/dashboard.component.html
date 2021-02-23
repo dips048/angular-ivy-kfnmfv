@@ -1,0 +1,13 @@
+<div *ngFor='let user of users;'>
+        <p>Id: {{ user.id }}</p>
+        <p>FirstName: {{ user.firstName }}</p>
+        <p>LastName: {{ user.lastName }}</p>
+        <p>Age: {{ user.age }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>FirstName: {{ user.contact }}</p>
+    <div>
+        <a routerLink="/update/{{user.id}}" routerLinkActive="active"><button>Edit</button></a>
+        <a href=""><button (click)="delete(user)">delete</button></a>
+    </div>
+        
+</div>

@@ -1,0 +1,38 @@
+<h2>Insert User Data</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  
+  <label>Id:</label>
+  <br>
+    <input type="text" formControlName="id" required>
+    <br>
+  <label>First Name:</label>
+  <br>
+    <input type="text" formControlName="firstName" required>
+    <br>
+  <label>Last Name:</label>
+  <br>
+    <input type="text" formControlName="lastName">
+    <br>
+  <label>Age:</label>
+  <br>
+    <input type="number" formControlName="age">
+    <br>
+  <label>Email:</label>
+  <br>
+    <input type="email" formControlName="email">
+    <br>
+  <label>Contact:</label>
+  <br>
+    <input type="number" formControlName="contact">
+    <br>
+  <button type="submit" [disabled]="!form.valid">Submit</button>
+  <button type="reset">Reset</button>
+</form>
+
+<hr>
+  <p>
+    Form Value: {{ form.value | json }}
+  </p>
+  <p>
+    Form Status: {{ form.status }}
+  </p>
