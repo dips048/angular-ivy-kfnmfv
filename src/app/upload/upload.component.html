@@ -1,24 +1,29 @@
 <div class="form-group col-12">
   <input type="file"
  id="file"
- #userPhoto
  (change)="onFileSelected($event)"
  name="file"
  autocomplete="off"
  />
-
   <button type="submit" (click)='downloadImage()'>Download</button>
+  <a [href]="downloadUrl | async">{{downloadUrl | async}}</a>
 </div>
 <div class="form-group col-12">
   <input type="file"
   id="file"
-  #userPhoto
   (change)="onImageSelected($event)"
   name="image"
   autocomplete="off"
   />
+  <button type="submit" (click)='downloadImage()'>Download</button>
+
+</div>
+
+<div>
+  <input type="text" [value]="value">
+  <button type="submit" (click)='uploadString()'>Upload String</button>
 </div>
 <br>
 <div>
-  file upload progress: {{progress | async }}%
+  File Upload Progress: {{progress | async }}%
 </div>

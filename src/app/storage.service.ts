@@ -6,7 +6,6 @@ import { AngularFireStorage } from '@angular/fire/storage';
 })
 export class StorageService {
   id = Date.now();
-  path = `files/${this.id}`;
   constructor(private storage: AngularFireStorage) {}
 
   uploadFile(file) {
@@ -19,9 +18,7 @@ export class StorageService {
   uploadString(message) {
     const path = `string/${this.id}`;
     const fileRef = this.storage.ref(path);
-    fileRef.putString(message).then(snapshot => {
-      console.log('Uploaded a raw string!');
-    });
+    return fileRef.putString(message).percentageChanges();
   }
 
   uploadImage(file) {
@@ -33,10 +30,11 @@ export class StorageService {
       .put(file, metadata);
     //task.then((snapshot) => console.log('Uploaded Image!'));
 
-    task.percentageChanges().subscribe(res => console.log('abcd', res));
+    return task.percentageChanges();
   }
 
   download() {
-    return this.storage.ref(this.path).getDownloadURL();
+    const path = `files/${this.id}`;
+    return this.storage.ref(path).getDownloadURL();
   }
 }

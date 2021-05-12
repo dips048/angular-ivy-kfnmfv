@@ -24,8 +24,9 @@ export class UploadComponent implements OnInit {
     0x21
   ]);
   selected;
-  downloadUrl;
-  progress: Observable<number>;
+  downloadUrl: Observable<any>;
+  progress: Observable<any>;
+  value = '';
   constructor(private storage: StorageService) {}
 
   ngOnInit() {}
@@ -37,10 +38,14 @@ export class UploadComponent implements OnInit {
 
   onImageSelected(event) {
     const file = event.target.files[0];
-    this.storage.uploadImage(file);
+    this.progress = this.storage.uploadImage(file);
+  }
+
+  uploadString() {
+    this.progress = this.storage.uploadString(this.value);
   }
 
   downloadImage() {
-    this.storage.download().subscribe(res => console.log('download url:', res));
+    this.downloadUrl = this.storage.download();
   }
 }
